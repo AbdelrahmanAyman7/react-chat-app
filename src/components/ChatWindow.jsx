@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Message from "./Message.jsx";
+import { IoSend } from "react-icons/io5";
 
-const ChatWindow = ({ messages, sendMessage }) => {
+const ChatWindow = ({ messages = [], sendMessage }) => {
   const [input, setInput] = useState("");
 
   const handleSend = () => {
@@ -14,18 +15,23 @@ const ChatWindow = ({ messages, sendMessage }) => {
   return (
     <div className="chat-container">
       <div className="messages">
-      {messages.map((msg, index) => (
-        <Message key={index} text={msg.text} sender={msg.sender} />
-      ))}
+        {messages?.map((msg, index) => (
+          <Message key={index} text={msg.text} sender={msg.sender} />
+        ))}
       </div>
       <div className="input-container">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-        />
-        <button onClick={handleSend}>Send</button>
+        <div className="input-wrapper">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Ask me a question..."
+            onKeyDown={(e) => e.key === "Enter" && handleSend()} 
+          />
+          <button onClick={handleSend} className="send-button">
+            <IoSend size={20} color="#fff" />
+          </button>
+        </div>
       </div>
     </div>
   );

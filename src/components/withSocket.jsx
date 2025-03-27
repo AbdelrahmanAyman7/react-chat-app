@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 
-const socket = io("http://localhost:5050", { transports: ["websocket"] });
+const socket = io("http://localhost:5000", { transports: ["websocket"] });
 
 /* eslint-disable no-unused-vars */
 const withSocket = (WrappedComponent) => {
